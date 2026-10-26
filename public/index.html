@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Prathik Courier Tracking Application</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-layout">
+    <header class="navbar">
+      <div class="brand">
+        <span class="brand-icon">📦</span>
+        <span class="brand-name">Prathik <span>Courier</span></span>
+      </div>
+      <div class="system-status"><span class="live-dot"></span> Sample Tracking Portal</div>
+    </header>
+
+    <section class="hero-section">
+      <h1 class="hero-title">Track Your Shipment</h1>
+      <p class="hero-subtitle">Enter your tracking number below to check the delivery status and shipment details.</p>
+    </section>
+
+    <main class="card search-card">
+      <form id="trackingForm" autocomplete="off">
+        <label for="trackingInput" class="input-label">Enter Tracking ID</label>
+        <div class="search-bar">
+          <span class="input-icon">🔍</span>
+          <input type="text" id="trackingInput" name="trackingId" placeholder="e.g. TRK1001, TRK1002" required>
+          <button type="submit" class="btn-track">
+            Track Courier <span class="arrow-icon">→</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="demo-section">
+        <span class="demo-label">Click a sample ID to test:</span>
+        <div class="demo-chips">
+          <button type="button" class="chip" data-id="TRK1001">TRK1001 (Booked)</button>
+          <button type="button" class="chip" data-id="TRK1002">TRK1002 (In Transit)</button>
+          <button type="button" class="chip" data-id="TRK1003">TRK1003 (Out for Delivery)</button>
+          <button type="button" class="chip" data-id="TRK1004">TRK1004 (Delivered)</button>
+          <button type="button" class="chip chip-invalid" data-id="TRK9999">TRK9999 (Invalid ID)</button>
+        </div>
+      </div>
+    </main>
+
+    <div id="loadingBox" class="card status-box loading-box hidden" role="status">
+      <div class="spinner"></div>
+      <p>Fetching courier details...</p>
+    </div>
+
+    <div id="errorBox" class="card status-box error-box hidden" role="alert">
+      <div class="alert-icon">⚠️</div>
+      <div>
+        <h3 id="errorHeading">Courier Not Found</h3>
+        <p id="errorMessageText">Please check the tracking number and try again.</p>
+      </div>
+    </div>
+
+    <section id="resultCard" class="card result-card hidden" aria-live="polite">
+      <div class="result-header">
+        <div>
+          <span class="result-label">Tracking Number</span>
+          <h2 id="displayTrackingId" class="result-id">TRK1001</h2>
+        </div>
+        <span id="displayStatusBadge" class="status-badge">Status</span>
+      </div>
+
+      <div class="progress-tracker-container">
+        <div class="progress-tracker">
+          <div class="tracker-step" id="step-booked">
+            <div class="step-marker"><span class="step-num">1</span><span class="step-check">✓</span></div>
+            <span class="step-label">Booked</span>
+          </div>
+          <div class="tracker-line" id="line-1"></div>
+          <div class="tracker-step" id="step-transit">
+            <div class="step-marker"><span class="step-num">2</span><span class="step-check">✓</span></div>
+            <span class="step-label">In Transit</span>
+          </div>
+          <div class="tracker-line" id="line-2"></div>
+          <div class="tracker-step" id="step-out">
+            <div class="step-marker"><span class="step-num">3</span><span class="step-check">✓</span></div>
+            <span class="step-label">Out for Delivery</span>
+          </div>
+          <div class="tracker-line" id="line-3"></div>
+          <div class="tracker-step" id="step-delivered">
+            <div class="step-marker"><span class="step-num">4</span><span class="step-check">✓</span></div>
+            <span class="step-label">Delivered</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="info-block">
+          <span class="info-label">Sender</span>
+          <p class="info-value" id="displaySender">-</p>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Receiver</span>
+          <p class="info-value" id="displayReceiver">-</p>
+        </div>
+        <div class="info-block full-width">
+          <span class="info-label">Destination Address</span>
+          <p class="info-value" id="displayDestination">-</p>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Expected Delivery Date</span>
+          <p class="info-value" id="displayExpectedDate">-</p>
+        </div>
+        <div class="info-block">
+          <span class="info-label">Current Status</span>
+          <p class="info-value highlight" id="displayCurrentStatus">-</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p> Prathik courier service</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
